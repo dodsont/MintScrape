@@ -3,8 +3,6 @@ Scrape Mint Data
 
 
 ## Requirements
-
-## Installation
 Ensure you have Python 2 or 3 and pip (`easy_install pip`) and then:
 
 ```shell
