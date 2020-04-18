@@ -1,6 +1,11 @@
 import mintapi
+import urllib
+import urllib2
+
+url = 'http://www.website.com/mint/add_data.php'
+
 mint = mintapi.Mint(
-  'emailadress',  # Email used to log in to Mint
+  'email',  # Email used to log in to Mint
   'password',  # Your password used to log in to mint
   # Optional parameters
   mfa_method='email',  # Can be 'sms' (default), 'email', or 'soft-token'.
@@ -45,12 +50,16 @@ mint = mintapi.Mint(
   #  mint.get_transactions_json(id=account["id"])
 
   # Get net worth
-net_worth = mint.get_net_worth()
-print net_worth
+networth = mint.get_net_worth()
+print networth
   
   # Get credit score
-mint.get_credit_score()
+credit_score = mint.get_credit_score()
 
+payload = {'networth': networth, 'credit_score': credit_score}
+data = urllib.urlencode(payload)
+req = urllib2.Request(url,data)
+response = urllib2.urlopen(req)
   # Get bills
   #mint.get_bills()
 
